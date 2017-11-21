@@ -43,9 +43,23 @@ Resources:
             Action: 
               - "sts:AssumeRole"
       Path: "/"
-      ManagedPolicyArns: 
-        -  arn:aws:iam::aws:policy/AWSLambdaExecute
       Policies: 
+        - 
+          PolicyName: "lambdaexecute"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - 
+                Effect: "Allow"
+                Action: 
+                  - "logs:*"
+                Resource: "arn:aws:logs:*:*:*"
+              - 
+                Effect: "Allow"
+                Action: 
+                  - "s3:GetObject"
+                  - "s3:GPutbject"
+                Resource: "arn:aws:s3:::*"
         - 
           PolicyName: "codebuild"
           PolicyDocument: 
@@ -99,10 +113,33 @@ Resources:
             Action: 
               - "sts:AssumeRole"
       Path: "/"
-      ManagedPolicyArns: 
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-        - arn:aws:iam::aws:policy/AWSCodeCommitReadOnly
       Policies: 
+        - 
+          PolicyName: "codecommit-readonly"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - 
+                Effect: "Allow"
+                Action:
+                  - "codecommit:BatchGet*"
+                  - "codecommit:Get*"
+                  - "codecommit:Describe*"
+                  - "codecommit:List*"
+                  - "codecommit:GitPull"
+                Resource: "*"
+        - 
+          PolicyName: "logs"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - 
+                Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "*"
         - 
           PolicyName: "s3-artifacts"
           PolicyDocument: 
