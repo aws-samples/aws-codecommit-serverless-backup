@@ -46,5 +46,5 @@ aws cloudformation deploy \
         BackupSchedule="${backup_schedule}" \
         BackupScriptsFile="${zipfile}" \
     --capabilities CAPABILITY_IAM \
-    --tags "Name=CodeCommitBackups"
+    --tags "Name=CodeCommitBackup"
 
