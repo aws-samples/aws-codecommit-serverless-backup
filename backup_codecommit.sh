@@ -26,7 +26,7 @@ declare -a repos=(`aws codecommit list-repositories | jq -r '.repositories[].rep
 for codecommitrepo in "${repos[@]}"
 do  
     echo "[===== Cloning repository: ${codecommitrepo} =====]"
-    git clone "https://git-codecommit.${AWS_DEFAULT_REGION}.amazonaws.com/v1/repos/${codecommitrepo}"
+    git clone --mirror "https://git-codecommit.${AWS_DEFAULT_REGION}.amazonaws.com/v1/repos/${codecommitrepo}"
 
     dt=$(date -u '+%Y_%m_%d_%H_%M')
     zipfile="${codecommitrepo}_backup_${dt}_UTC.tar.gz"
