@@ -27,7 +27,7 @@ cfn_parameters="codecommit_backup_cfn_parameters.json"
 zipfile="codecommit_backup_scripts.zip"
 cfn_gen_template="/tmp/gen_codecommit_backup_cfn_template.yaml"
 
-zip -r "${zipfile}" ./
+zip -r "${zipfile}" ./ -x .git\*
 aws s3 --profile $aws_profile cp "${zipfile}" "s3://${scripts_s3_bucket}"
 rm -f "${zipfile}"
 
