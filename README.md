@@ -40,6 +40,30 @@ stack_name="codecommit-backups"        # CloudFormation stack name for the solut
   ./deploy.sh
 ```
 
+# Catch failed runs
+
+* Create an AWS SNS email topic
+* Create a CloudWatch Event like this one:
+```
+{
+  "source": [
+    "aws.codebuild"
+  ],
+  "detail-type": [
+    "CodeBuild Build State Change"
+  ],
+  "detail": {
+    "build-status": [
+      "FAILED"
+    ],
+    "project-name": [
+      "CodeCommitBackup"
+    ]
+  }
+}
+```
+* Assign the SNS topic as a target for this event
+
 ## License Summary
 
 This sample code is made available under the MIT-0 license. See the LICENSE file.
