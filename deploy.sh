@@ -17,7 +17,7 @@ cfn_parameters="codecommit_backup_cfn_parameters.json"
 zipfile="codecommit_backup_scripts.zip"
 cfn_gen_template="/tmp/gen_codecommit_backup_cfn_template.yaml"
 
-zip -r "${zipfile}" ./
+zip -r "${zipfile}" ./ -x .git\*
 aws s3 --profile $aws_profile cp "${zipfile}" "s3://${scripts_s3_bucket}"
 rm -f "${zipfile}"
 
@@ -35,5 +35,6 @@ aws cloudformation deploy \
         CodeCommitBackupsS3Bucket="${backups_s3_bucket}" \
         BackupSchedule="${backup_schedule}" \
         BackupScriptsFile="${zipfile}" \
-    --capabilities CAPABILITY_IAM
+    --capabilities CAPABILITY_IAM \
+    --tags "Name=${stack_name}"
 

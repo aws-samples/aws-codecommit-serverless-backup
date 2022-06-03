@@ -34,4 +34,3 @@ then
       ./backup_repo.sh "${backup_s3_bucket}" {} ::: "${repos[@]}" && break
   done
 fi
-
