@@ -44,12 +44,6 @@ Resources:
                 Action: 
                   - "logs:*"
                 Resource: "arn:aws:logs:*:*:*"
-              - 
-                Effect: "Allow"
-                Action: 
-                  - "s3:GetObject"
-                  - "s3:GPutbject"
-                Resource: "arn:aws:s3:::*"
         - 
           PolicyName: "codebuild"
           PolicyDocument: 
