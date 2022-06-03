@@ -8,7 +8,7 @@ phases:
   install:
     commands:
       - apt-get update -y
-      - apt-get install -y jq
+      - apt-get install -y jq parallel
 
   build:
     commands:
