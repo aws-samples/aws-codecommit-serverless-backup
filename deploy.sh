@@ -13,7 +13,6 @@ stack_name="codecommit-backups"
 
 # You can also change these parameters but it's not required
 cfn_template="codecommit_backup_cfn_template.yaml"
-cfn_parameters="codecommit_backup_cfn_parameters.json"
 zipfile="codecommit_backup_scripts.zip"
 cfn_gen_template="/tmp/gen_codecommit_backup_cfn_template.yaml"
 
